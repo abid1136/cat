@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Romantic Cat Gallery</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Cormorant+Garamond:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet">
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    @keyframes sparkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+    .page-enter {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    .heart-icon {
+      animation: heartbeat 2s ease-in-out infinite;
+    }
+    .sparkle {
+      animation: sparkle 2s ease-in-out infinite;
+    }
+    
+    .romantic-gradient {
+      background: linear-gradient(180deg, #0a0a0f 0%, #1a0a15 50%, #0f0a1a 100%);
+    }
+  </style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full romantic-gradient text-white overflow-auto" style="font-family: 'Cormorant Garamond', serif;">
+  <div id="app" class="h-full w-full flex flex-col">
+   <!-- Header -->
+   <header class="text-center py-6 relative">
+    <div class="absolute top-4 left-1/2 -translate-x-1/2 flex gap-3">
+     <span class="sparkle text-rose-400 text-xl" style="animation-delay: 0s;">✦</span> <span class="sparkle text-rose-300 text-lg" style="animation-delay: 0.5s;">✧</span> <span class="sparkle text-rose-400 text-xl" style="animation-delay: 1s;">✦</span>
+    </div>
+    <h1 id="gallery-title" class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-300 via-red-400 to-rose-300" style="font-family: 'Playfair Display', serif;">Something For You</h1>
+    <p class="text-rose-200/70 mt-2 text-lg italic">A little Effort For Someone Truly Special</p>
+   </header><!-- Page Content -->
+   <main class="flex-1 flex flex-col items-center justify-center px-4 pb-4">
+    <div id="page-container" class="page-enter w-full max-w-md">
+     <!-- Dynamic content will be inserted here -->
+    </div>
+   </main><!-- Navigation -->
+   <nav class="py-6 px-4">
+    <div class="flex items-center justify-center gap-4">
+     <button id="prev-btn" class="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-rose-900/80 to-red-900/80 hover:from-rose-800 hover:to-red-800 rounded-full border border-rose-500/30 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed">
+      <span class="text-rose-200">Back</span> </button>
+     <div class="flex items-center gap-2 px-4">
+      <span class="heart-icon text-red-500 text-2xl">♥</span> <span id="page-indicator" class="text-rose-300 font-semibold" style="font-family: 'Playfair Display', serif;">1 / 15</span> <span class="heart-icon text-red-500 text-2xl" style="animation-delay: 0.5s;">♥</span>
+     </div>
+     <button id="next-btn" class="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-900/80 to-rose-900/80 hover:from-red-800 hover:to-rose-800 rounded-full border border-rose-500/30 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"> <span class="text-rose-200">Next</span>
+      <svg class="w-5 h-5 text-rose-300 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg></button>
+    </div>
+   </nav>
+  </div>
+  <script>
+    const pages = [
+      {
+        image: "1.jpg",
+        quote: "So, are you here Mohtarma? I wanted to make something for you… So click on next and  see..."
+      },
+      {
+        image: "8.jpg",
+        quote: "“A cat holding a single rose for the one ... Jo khud bhi gulab jaisi khoobsurat hai… Mohtarma...✨"
+      },
+      {
+        image: "12.jpg",
+        quote: "“Mohtarma, mujhe lagta hai ek gulab aap jaise gulab ke liye kaafi nahi… is liye yeh lijiye, aap ke liye bohot saare phool...🌹"
+      },
+      {
+        image: "11.jpg",
+        quote: "Mohtarma, aap ke liye jitne bhi gulab aur phool le aaun, woh phir bhi kam hi honge...🌹✨"
+      },
+      {
+        image: "15.jpg",
+        quote: "Dekhiye Mohtarma, phool lene ke baad bhi agar achha sa reply nahi diya na… to main apko aise hee khajaoga...😄🌹"
+      },
+      {
+        image: "4.jpg",
+        quote: "Cat(cutie) muskura rahi hain na… yeh saaf pta chl raha hai.” 😊"
+      },
+      {
+        image: "5.jpg",
+        quote: "Aare jldi jldi padho wait kar rhe hai hm udhar baat karne ke liye "
+      },
+      {
+        image: "16.jpg",
+        quote: "Pta hai cat aaj hmko boli na cat bilkul aise dekh rhi hai ekdm cute...✨ "
+      },
+      {
+        image: "10.jpg",
+        quote: "kya soch rhi ho mohtarma... muskura rhi hoo kya "
+      },
+      {
+        image: "2.jpg",
+        quote: "Dekho cat tmhe chudail bol rhi hai.... 😄"
+      },
+      
+      {
+        image: "17.jpg",
+        quote: "Gussa maat hojna mohtarma eis cat ke tarah gusse me bhi cute dekhte ho mujhe pta hai...💕"
+      },
+      {
+        image: "14.jpg",
+        quote: "chlo kmtm hogya mohtarma wapas ajao chat me...(btw next page me gift hai apke liye)"
+      },
+      {
+        image: "20.jpg",
+        quote: "Jhut bol rhe the hm too...😂"
+      },
+      
+    ];
+
+    let currentPage = 0;
+
+    const defaultConfig = {
+      gallery_title: "Whiskers & Romance"
+    };
+
+    function renderPage(pageIndex) {
+      const page = pages[pageIndex];
+      const container = document.getElementById('page-container');
+      
+      container.classList.remove('page-enter');
+      void container.offsetWidth;
+      container.classList.add('page-enter');
+
+      container.innerHTML = `
+          <div class="bg-gradient-to-br from-rose-900/30 to-black/50 rounded-2xl p-3 flex items-center justify-center" style="width: 190px; overflow: hidden; margin: 0 auto; margin-bottom:150px;">
+            <img src="${page.image}" alt="Cat" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Image unavailable';">
+          </div>
+        </div>
+        <div class="text-center px-4"
+        style="margin-top:-100px;">
+          <p class="text-xl md:text-2xl text-rose-100 italic leading-relaxed mb-3" style="font-family: 'Cormorant Garamond', serif;">
+            "${page.quote}"
+          </p>
+          <p class="text-rose-400/80 text-lg" style="font-family: 'Playfair Display', serif;">
+            ${page.author}
+          </p>
+        </div>
+      `;
+
+      document.getElementById('page-indicator').textContent = `${pageIndex + 1} / ${pages.length}`;
+      
+      document.getElementById('prev-btn').disabled = pageIndex === 0;
+      document.getElementById('next-btn').disabled = pageIndex === pages.length - 1;
+    }
+
+    function goToPage(direction) {
+      const newPage = currentPage + direction;
+      if (newPage >= 0 && newPage < pages.length) {
+        currentPage = newPage;
+        renderPage(currentPage);
+      }
+    }
+
+    document.getElementById('prev-btn').addEventListener('click', () => goToPage(-1));
+    document.getElementById('next-btn').addEventListener('click', () => goToPage(1));
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') goToPage(-1);
+      if (e.key === 'ArrowRight') goToPage(1);
+    });
+
+    async function onConfigChange(config) {
+      const titleEl = document.getElementById('gallery-title');
+      if (titleEl) {
+        titleEl.textContent = config.gallery_title || defaultConfig.gallery_title;
+      }
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (config) => ({
+          recolorables: [],
+          borderables: [],
+          fontEditable: undefined,
+          fontSizeable: undefined
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["gallery_title", config.gallery_title || defaultConfig.gallery_title]
+        ])
+      });
+    }
+
+    renderPage(0);
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d9359ff432bc08b',t:'MTc3Mjk4ODc2MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
